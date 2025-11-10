@@ -5,28 +5,43 @@ const gridToggle = document.querySelector("#gridToggle");
 const colorPicker = document.querySelector("#colorPicker");
 const gridSize = document.querySelector("#gridSize");
 const gridValue = document.querySelector("#gridValue");
+const rainbowBtn = document.querySelector(`#rainbowBtn`);
 
 let drawing = false;
 let grid = false;
 let color = colorPicker.value;
 let size = parseInt(gridSize.value);
+let rainbowMode = false;
 
-board.addEventListener("mousedown", () => (drawing = true));
-board.addEventListener("mouseup", () => (drawing = false));
-board.addEventListener("mouseleave", () => (drawing = false));
+board.addEventListener("pointerdown", (e) => {
+	drawing = true;
+	draw(e);
+});
 
-board.addEventListener("mouseover", (e) => draw(e));
-board.addEventListener("mousedown", (e) => draw(e));
+board.addEventListener("pointermove", (e) => {
+	if (drawing) draw(e);
+});
+
+document.addEventListener("pointerup", () => (drawing = false));
+board.addEventListener("touchmove", (e) => e.preventDefault(), {
+	passive: false,
+});
 
 clearBtn.addEventListener("click", () => clearBoard());
 gridToggle.addEventListener("click", () => toggleGrid());
 
 colorPicker.addEventListener("input", (e) => (color = e.target.value));
 eraser.addEventListener("click", () => (color = "white"));
+
 gridSize.addEventListener("input", () => {
 	gridValue.innerText = `${gridSize.value} x ${gridSize.value}`;
 	size = gridSize.value;
 	drawBoard();
+});
+
+rainbowBtn.addEventListener("click", () => {
+	rainbowMode = !rainbowMode;
+	rainbowBtn.classList.toggle("active");
 });
 
 function toggleGrid() {
@@ -37,6 +52,10 @@ function toggleGrid() {
 }
 
 function draw(e) {
+	if (rainbowMode) {
+		const randomColor = `hsl(${Math.floor(Math.random() * 360)},70%,50%)`;
+		color = randomColor;
+	}
 	if (drawing && e.target.classList.contains("pixel")) {
 		e.target.style.backgroundColor = color;
 	}

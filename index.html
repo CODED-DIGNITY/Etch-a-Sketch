@@ -2,18 +2,24 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, user-scalable=no"
+		/>
 		<title>Itch-a-Sketch</title>
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<h1>Itch-a-Sketch</h1>
+		<h1 id="title">Itch a Sketch</h1>
 		<div id="container">
 			<div id="toolbar">
 				<input type="color" id="colorPicker" value="#000000" />
 				<button id="clearBtn">Clear</button>
 				<button id="eraser">Eraser</button>
 				<button id="gridToggle">Grid Toggle</button>
+				<button id="rainbowBtn">Rainbow Mode</button>
+			</div>
+			<div id="gridSizeContainer">
 				<input
 					type="range"
 					id="gridSize"
