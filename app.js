@@ -80,6 +80,7 @@ function drawBoard() {
 	for (let i = 0; i < size * size; i++) {
 		const pixel = document.createElement("div");
 		pixel.classList.add("pixel");
+		if (grid) pixel.classList.add("grid");
 		pixel.style.width = `calc(100% / ${size})`;
 		pixel.style.height = `calc(100% / ${size})`;
 		board.appendChild(pixel);
