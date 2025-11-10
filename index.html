@@ -8,7 +8,24 @@
 	</head>
 	<body>
 		<h1>Itch-a-Sketch</h1>
-		<div id="board"></div>
+		<div id="container">
+			<div id="toolbar">
+				<input type="color" id="colorPicker" value="#000000" />
+				<button id="clearBtn">Clear</button>
+				<button id="eraser">Eraser</button>
+				<button id="gridToggle">Grid Toggle</button>
+				<input
+					type="range"
+					id="gridSize"
+					min="4"
+					max="64"
+					value="16"
+					step="4"
+				/>
+				<span id="gridValue">16×16</span>
+			</div>
+			<div id="board"></div>
+		</div>
 		<script src="app.js"></script>
 	</body>
 </html>
