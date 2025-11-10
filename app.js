@@ -41,6 +41,7 @@ gridSize.addEventListener("input", () => {
 });
 
 rainbowBtn.addEventListener("click", () => {
+	if (rainbowMode) color = "black";
 	rainbowMode = !rainbowMode;
 	rainbowBtn.classList.toggle("active");
 });
