@@ -15,6 +15,7 @@ let rainbowMode = false;
 
 board.addEventListener("pointerdown", (e) => {
 	drawing = true;
+	board.setPointerCapture(e.pointerId);
 	draw(e);
 });
 
@@ -56,8 +57,13 @@ function draw(e) {
 		const randomColor = `hsl(${Math.floor(Math.random() * 360)},70%,50%)`;
 		color = randomColor;
 	}
-	if (drawing && e.target.classList.contains("pixel")) {
-		e.target.style.backgroundColor = color;
+	const pixelUnderPointer = document.elementFromPoint(e.clientX, e.clientY);
+	if (
+		drawing &&
+		pixelUnderPointer &&
+		pixelUnderPointer.classList.contains("pixel")
+	) {
+		pixelUnderPointer.style.backgroundColor = color;
 	}
 }
 
